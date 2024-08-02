@@ -19,3 +19,4 @@ include = ["quickscript"]
 [project.urls]
 Homepage = "https://github.com/mzimm003/quickscript"
 Issues = "https://github.com/mzimm003/quickscript/issues"
+Documentation = "https://mzimm003.github.io/quickscript/"
