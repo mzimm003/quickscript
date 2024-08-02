@@ -3,15 +3,19 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "my_chess"
+name = "quickscript"
 authors = [
     {name = "Mark Zimmerman", email = "mzimm003@gmail.com"},
 ]
 version = "0.0.1"
 
 [tool.setuptools]
-package-dir = {"" = "src"}
+package-dir = {"" = "quickscript"}
 
 [tool.setuptools.packages.find]
-where = ["src"]
-include = ["my_chess","my_chess.*"]
+where = ["quickscript"]
+include = ["quickscript"]
+
+[project.urls]
+Homepage = "https://github.com/mzimm003/quickscript"
+Issues = "https://github.com/mzimm003/quickscript/issues"
