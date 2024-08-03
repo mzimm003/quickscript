@@ -124,12 +124,17 @@ class Script(abc.ABC):
         _SCRIPTREGISTRY[cls.__name__] = cls
 
     @abc.abstractmethod
+    def setup(self):
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def run(self):
         raise NotImplementedError
 
     def update(self, **kwargs):
-        for k, v in kwargs.items():
-            self.__dict__[k] = v
+        temp = self.__class__(**kwargs)
+        for k, v in self.__dict__.items():
+            self.__dict__[k] = temp.__dict__[k]
 
     def parseArgs(self):
         self.argCol.parseArgs(self.args, self.namespace)
@@ -144,6 +149,7 @@ class Script(abc.ABC):
         Useful for allowing files to run scripts dynamically from the terminal.
         """
         self.parseArgs()
+        self.setup()
         self.run()
 
 class ScriptChooser(Script):
@@ -165,11 +171,15 @@ class ScriptChooser(Script):
         self.argCol.setAbstractMethodArgs(self.selected_script.getArgumentCollector().getAbstractMethodArgs())
         self.selected_script.update(**self.argCol.getArgs(self.selected_script.__init__))
 
+    def setup(self):
+        pass
+
     def run(self):
         """
         Args:
         """
         self.__selectScript()
+        self.selected_script.setup()
         self.selected_script.run(**self.argCol.getArgs(self.selected_script.run))
 
     def parseArgs(self):
@@ -191,6 +201,9 @@ class ExampleScript(Script):
         """
         super().__init__(**kwargs)
         self.name = name
+    
+    def setup(self):
+        pass
     
     def run(self):
         print("Hello, {}".format(self.name))
