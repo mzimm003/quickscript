@@ -62,5 +62,11 @@ A complete example is provided below:
         $ python main.py HelloScript -n World
         Hello, World
 
+## Installation
+    <terminal>
+        $ git clone https://github.com/mzimm003/quickscript
+        $ cd quickscript/
+        $ pip install .
+
 ## Documentation
 See [Here](https://mzimm003.github.io/quickscript)
