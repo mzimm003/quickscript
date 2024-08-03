@@ -9,12 +9,8 @@ authors = [
 ]
 version = "0.0.1"
 
-[tool.setuptools]
-package-dir = {"" = "quickscript"}
-
-[tool.setuptools.packages.find]
-where = ["quickscript"]
-include = ["quickscript"]
+[tool.setuptools.packages]
+find = {}
 
 [project.urls]
 Homepage = "https://github.com/mzimm003/quickscript"
