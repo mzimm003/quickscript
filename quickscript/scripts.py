@@ -121,7 +121,9 @@ class Script(abc.ABC):
 
     def __init_subclass__(cls):
         super().__init_subclass__()
-        _SCRIPTREGISTRY[cls.__name__] = cls
+        is_abstract = (cls.run == Script.run or cls.setup == Script.setup)
+        if not is_abstract:
+            _SCRIPTREGISTRY[cls.__name__] = cls
 
     @abc.abstractmethod
     def setup(self):
